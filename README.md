@@ -11,8 +11,6 @@ A zero-dependency collection of tiny, fun canvas games for React. Great for 404 
 
 ```bash
 npm i react-mini-games
-# or
-# npm i @your-scope/react-mini-games
 ```
 
 ## Usage
