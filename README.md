@@ -1,6 +1,6 @@
 # react-mini-games
 
-A zero-dependency collection of tiny, fun canvas games for React. Great for 404 pages or playful embeds.
+A zero-dependency collection of tiny, fun canvas games for React. Great for 404 pages or playful embeds. The code for this library was written almost entirely by GPT-5.
 
 - Zero runtime dependencies (React is a peer dependency)
 - Keyboard and touch controls
