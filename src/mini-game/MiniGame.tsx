@@ -1,4 +1,4 @@
-import { useMemo, useRef, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 import type { MiniGameProps, MiniGameName } from "./types";
 import { useGameLoop } from "../shared/useGameLoop";
 import { useHighScore } from "../shared/useHighScore";
@@ -47,6 +47,23 @@ export function MiniGame(props: MiniGameProps) {
   const [isOver, setIsOver] = useState(false);
   const { highScore, updateHighScore } = useHighScore(highScoreKey);
 
+  // Keep external callbacks in refs to avoid recreating the lifecycle
+  const onGameOverRef = useRef(onGameOver);
+  const onScoreChangeRef = useRef(onScoreChange);
+  const updateHighScoreRef = useRef(updateHighScore);
+
+  useEffect(() => {
+    onGameOverRef.current = onGameOver;
+  }, [onGameOver]);
+
+  useEffect(() => {
+    onScoreChangeRef.current = onScoreChange;
+  }, [onScoreChange]);
+
+  useEffect(() => {
+    updateHighScoreRef.current = updateHighScore;
+  }, [updateHighScore]);
+
   const lifecycle = useMemo(() => {
     const base: BaseGameProps = {
       width,
@@ -54,26 +71,17 @@ export function MiniGame(props: MiniGameProps) {
       devicePixelRatio,
       onGameOver: (s) => {
         setIsOver(true);
-        onGameOver?.(s);
-        updateHighScore(s);
+        onGameOverRef.current?.(s);
+        updateHighScoreRef.current?.(s);
       },
       onScoreChange: (s) => {
         setScore(s);
-        onScoreChange?.(s);
+        onScoreChangeRef.current?.(s);
       },
       highScoreKey,
     };
     return pickGame(game, base);
-  }, [
-    game,
-    width,
-    height,
-    devicePixelRatio,
-    highScoreKey,
-    onGameOver,
-    onScoreChange,
-    updateHighScore,
-  ]);
+  }, [game, width, height, devicePixelRatio, highScoreKey]);
 
   useGameLoop(canvasRef, lifecycle, { w: width, h: height }, devicePixelRatio);
 
