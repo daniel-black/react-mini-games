@@ -1,6 +1,11 @@
 import type { BaseGameProps } from "../shared/types";
 
-export type MiniGameName = "runner" | "paddle";
+export type MiniGameName =
+  | "runner"
+  | "paddle"
+  | "flappy"
+  | "snake"
+  | "asteroids";
 
 export type MiniGameProps = BaseGameProps & {
   game: MiniGameName;

@@ -72,18 +72,20 @@ export function useGameLoop(
       setAction(true);
       const rect = canvas!.getBoundingClientRect();
       const x = e.clientX - rect.left;
-      if (x < rect.width / 2) {
-        inputRef.current.left = true;
-        inputRef.current.right = false;
-      } else {
-        inputRef.current.right = true;
-        inputRef.current.left = false;
-      }
+      const y = e.clientY - rect.top;
+      const midX = rect.width / 2;
+      const midY = rect.height / 2;
+      inputRef.current.left = x < midX;
+      inputRef.current.right = x >= midX;
+      inputRef.current.up = y < midY;
+      inputRef.current.down = y >= midY;
     }
     function onPointerUp() {
       setAction(false);
       inputRef.current.left = false;
       inputRef.current.right = false;
+      inputRef.current.up = false;
+      inputRef.current.down = false;
     }
     function onPointerCancel() {
       onPointerUp();

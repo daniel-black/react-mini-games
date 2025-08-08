@@ -5,6 +5,9 @@ import { useHighScore } from "../shared/useHighScore";
 import type { BaseGameProps, GameLifecycle } from "../shared/types";
 import { createRunner } from "../runtime/runnerGame";
 import { createPaddle } from "../runtime/paddleGame";
+import { createFlappy } from "../runtime/flappyGame";
+import { createSnake } from "../runtime/snakeGame";
+import { createAsteroids } from "../runtime/asteroidsGame";
 
 function pickGame(name: MiniGameName, baseProps: BaseGameProps): GameLifecycle {
   switch (name) {
@@ -12,6 +15,12 @@ function pickGame(name: MiniGameName, baseProps: BaseGameProps): GameLifecycle {
       return createRunner(baseProps);
     case "paddle":
       return createPaddle(baseProps);
+    case "flappy":
+      return createFlappy(baseProps);
+    case "snake":
+      return createSnake(baseProps);
+    case "asteroids":
+      return createAsteroids(baseProps);
   }
 }
 

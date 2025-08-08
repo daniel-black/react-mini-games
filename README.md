@@ -16,7 +16,14 @@ npm i react-mini-games
 ## Usage
 
 ```tsx
-import { MiniGame, Runner, Paddle } from "react-mini-games";
+import {
+  MiniGame,
+  Runner,
+  Paddle,
+  Flappy,
+  Snake,
+  Asteroids,
+} from "react-mini-games";
 
 export default function NotFound() {
   return (
@@ -31,6 +38,9 @@ export default function NotFound() {
       {/* or individual exports */}
       <Runner width={360} height={200} />
       <Paddle width={360} height={220} />
+      <Flappy width={360} height={200} />
+      <Snake width={360} height={200} />
+      <Asteroids width={360} height={200} />
     </div>
   );
 }
@@ -53,6 +63,9 @@ export default function NotFound() {
 
 - `runner`: Endless runner with obstacles
 - `paddle`: Breakout-style paddle + blocks
+- `flappy`: Tap/space to flap through gaps
+- `snake`: Grid movement, eat food, grow
+- `asteroids`: Rotate/thrust, shoot and split rocks
 
 ## Develop
 
