@@ -1,6 +1,6 @@
 {
   "name": "react-mini-games",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "A collection of mini games built with React.",
   "main": "./dist/index.js",
   "module": "./dist/index.mjs",
