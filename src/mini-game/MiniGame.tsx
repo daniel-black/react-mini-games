@@ -55,8 +55,16 @@ export function MiniGame(props: MiniGameProps) {
       highScoreKey,
     };
     return pickGame(game, base);
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [game, width, height, devicePixelRatio, highScoreKey]);
+  }, [
+    game,
+    width,
+    height,
+    devicePixelRatio,
+    highScoreKey,
+    onGameOver,
+    onScoreChange,
+    updateHighScore,
+  ]);
 
   useGameLoop(canvasRef, lifecycle, { w: width, h: height }, devicePixelRatio);
 
